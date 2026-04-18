@@ -17,7 +17,7 @@ A lightweight Static Analysis Security Testing (SAST) tool designed to detect co
 1.  **Prerequisites**: Python 3.11.6
 2.  **Clone/Copy the project** to your local machine.
     ```
-    git clone 
+    git clone https://github.com/psTudor/IaC-Scanner.git
     ```
 3.  **Install Dependencies**:
     ```bash
@@ -66,7 +66,7 @@ Un script de tip Static Analysis Security Testing (SAST) conceput pentru a detec
 1.  **Cerinte**: Python 3.11.6
 2.  **Copiati proiectul** pe masina voastra.
     ```
-    git clone 
+    git clone https://github.com/psTudor/IaC-Scanner.git
     ```
 3.  **Instalarea dependentelor**:
     ```bash
