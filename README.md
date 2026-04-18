@@ -20,6 +20,19 @@ A lightweight Static Analysis Security Testing (SAST) tool designed to detect co
     git clone https://github.com/psTudor/IaC-Scanner.git
     ```
 3.  **Install Dependencies**:
+   Create a virtual enviroment and activate it
+    ```bash
+    python -m venv
+    ```
+    Windows powershell
+    ```bash
+    venv\Scripts\Activate.ps1
+    ```
+    Linux bash/zsh
+    ```bash
+    source venv/bin/activate
+    ```
+    Install dependencies
     ```bash
     pip install -r requirements.txt
     ```
@@ -68,7 +81,20 @@ Un script de tip Static Analysis Security Testing (SAST) conceput pentru a detec
     ```
     git clone https://github.com/psTudor/IaC-Scanner.git
     ```
-3.  **Instalarea dependentelor**:
+3.  **Instalare Dependinte**:
+   Creati un virtual enviroment pe care apoi il activati
+    ```bash
+    python -m venv
+    ```
+    Windows powershell
+    ```bash
+    venv\Scripts\Activate.ps1
+    ```
+    Linux bash/zsh
+    ```bash
+    source venv/bin/activate
+    ```
+    Instalarea Dependintelor
     ```bash
     pip install -r requirements.txt
     ```
