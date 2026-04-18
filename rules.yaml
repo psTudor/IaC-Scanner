@@ -1,0 +1,83 @@
+rules:
+  - id: "AZU-APP-001"
+    resource_type: "azurerm_app_service"
+    attribute: "https_only"
+    expected_value: true
+    message: "has HTTPS disabled."
+    description: "Unencrypted HTTP traffic allows Man-in-the-Middle (MitM) attacks."
+    remediation: "Set 'https_only = true'."
+
+  - id: "AZU-STO-001"
+    resource_type: "azurerm_storage_account"
+    attribute: "enable_https_traffic_only"
+    expected_value: true
+    message: "allows non-HTTPS traffic."
+    description: "Unencrypted traffic can expose storage data to interception."
+    remediation: "Set 'enable_https_traffic_only = true'."
+
+  - id: "AZU-STO-002"
+    resource_type: "azurerm_storage_account"
+    attribute: "allow_nested_items_to_be_public"
+    expected_value: false
+    message: "allows nested items to be public."
+    description: "Public blobs/containers can lead to massive data leaks."
+    remediation: "Set 'allow_nested_items_to_be_public = false'."
+
+  - id: "AZU-APP-002"
+    resource_type: "azurerm_app_service"
+    attribute: "site_config.min_tls_version"
+    expected_value: "1.2"
+    message: "has weak or missing TLS version."
+    description: "Old TLS versions (1.0/1.1) are vulnerable to known cryptographic attacks."
+    remediation: "Set 'min_tls_version = \"1.2\"'."
+
+  - id: "AZU-IAM-001"
+    resource_type: "azurerm_role_assignment"
+    attribute: "role_definition_name"
+    expected_value: "Owner"
+    operator: "not_equals"
+    message: "has excessive privileges (Owner role assigned)."
+    description: "Violates Principle of Least Privilege. 'Owner' grants full control over the infrastructure."
+    remediation: "Assign a restrictive role like 'Contributor' or 'Reader'."
+
+  - id: "AZU-NET-001"
+    resource_type: "azurerm_network_security_group"
+    attribute: "security_rule.source_address_prefix"
+    operator: "not_equals"
+    expected_value: "*"
+    message: "allows inbound traffic from anywhere (Internet)."
+    description: "Allowing any IP (*) opens the network to public brute-force and scanning attacks."
+    remediation: "Restrict 'source_address_prefix' to specific trusted IPs."
+
+  - id: "AZU-NET-002"
+    resource_type: "azurerm_network_security_group"
+    attribute: "security_rule.destination_port_range"
+    expected_value: "22-22"
+    operator: "not_equals"
+    message: "has SSH port (22) exposed. Ensure it is restricted to internal IPs."
+    description: "Publicly exposing SSH invites brute-force attacks on admin accounts."
+    remediation: "Restrict port 22 access to internal networks."
+
+  - id: "AZU-AKS-001"
+    resource_type: "azurerm_kubernetes_cluster"
+    attribute: "role_based_access_control.enabled"
+    expected_value: true
+    message: "has Kubernetes RBAC disabled."
+    description: "Without RBAC, any compromised pod could gain full cluster control."
+    remediation: "Set 'role_based_access_control.enabled = true'."
+
+  - id: "AZU-DB-001"
+    resource_type: "azurerm_postgresql_server"
+    attribute: "ssl_enforcement_enabled"
+    expected_value: true
+    message: "does not enforce SSL connections."
+    description: "Database queries and data sent in plain text can be intercepted."
+    remediation: "Set 'ssl_enforcement_enabled = true'."
+
+  - id: "AZU-DB-002"
+    resource_type: "azurerm_postgresql_server"
+    attribute: "public_network_access_enabled"
+    expected_value: false
+    message: "allows public network access."
+    description: "Public databases are easily discoverable targets for attackers."
+    remediation: "Set 'public_network_access_enabled = false'."
