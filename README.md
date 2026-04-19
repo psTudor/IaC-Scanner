@@ -22,7 +22,7 @@ A lightweight Static Analysis Security Testing (SAST) tool designed to detect co
 3.  **Install Dependencies**:
    Create a virtual enviroment and activate it
     ```bash
-    python -m venv
+    python -m venv venv
     ```
     Windows powershell
     ```bash
@@ -84,7 +84,7 @@ Un script de tip Static Analysis Security Testing (SAST) conceput pentru a detec
 3.  **Instalare Dependinte**:
    Creati un virtual enviroment pe care apoi il activati
     ```bash
-    python -m venv
+    python -m venv venv
     ```
     Windows powershell
     ```bash
